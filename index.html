@@ -136,12 +136,67 @@
             background-color: var(--text-secondary);
         }
 
-        @media (max-width: 992px) {
-            body { padding: 0; }
-            .portfolio-container { flex-direction: column; height: 100vh; max-height: none; border-radius: 0; border: none; }
-            .spotlight-container { height: 60vh; }
-            .project-list-container { flex-basis: auto; height: 40vh; border-left: none; border-top: 1px solid var(--border-color); }
-        }
+        /* === (แก้ไข) ส่วนของการทำ Responsive Design ให้สวยงาม === */
+@media (max-width: 992px) {
+    body {
+        padding: 0; /* สำหรับหน้าจอมือถือ ให้ container เต็มจอ */
+    }
+
+    .portfolio-container {
+        flex-direction: column; /* เปลี่ยนเป็นแนวตั้ง */
+        height: 100vh;
+        max-height: none;
+        border-radius: 0;
+        border: none;
+    }
+
+    .spotlight-container {
+        height: 60vh; /* ให้ส่วนแสดงผลหลักสูง 60% ของหน้าจอ */
+    }
+    
+    .spotlight-info {
+        /* ลด padding ลงเล็กน้อยสำหรับจอแท็บเล็ต */
+        padding: 1.5rem;
+    }
+
+    #spotlight-title {
+        /* ลดขนาดฟอนต์หัวข้อหลัก */
+        font-size: 1.5rem;
+    }
+
+    .project-list-container {
+        flex-basis: auto; /* ไม่ต้องกำหนด flex-basis */
+        height: 40vh; /* ให้ส่วนรายการสูง 40% ของหน้าจอ */
+        border-left: none;
+        border-top: 1px solid var(--border-color);
+        /* ปรับ padding ให้เหมาะสม */
+        padding: 1.5rem 1rem;
+    }
+    
+    .list-header {
+        /* ลดขนาดฟอนต์หัวข้อรายการ */
+        font-size: 1.25rem;
+        margin-bottom: 1rem;
+    }
+}
+
+/* --- เพิ่มการปรับปรุงสำหรับหน้าจอมือถือที่เล็กลงมาอีก --- */
+@media (max-width: 768px) {
+    .spotlight-info {
+        flex-direction: column; /* จัดเรียง Title และปุ่มในแนวตั้ง */
+        align-items: flex-start; /* จัดชิดซ้าย */
+        gap: 1rem; /* เพิ่มช่องว่างระหว่าง Title และปุ่ม */
+    }
+
+    #spotlight-title {
+        font-size: 1.3rem; /* ลดขนาดฟอนต์ลงอีกสำหรับจอมือถือ */
+    }
+
+    #spotlight-link {
+        /* ลดขนาดปุ่มเล็กน้อย */
+        padding: 0.6rem 1.2rem;
+    }
+}
     </style>
 </head>
 <body>
