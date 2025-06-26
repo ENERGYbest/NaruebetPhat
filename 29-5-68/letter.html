@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>leave letter</title>
+    <link rel="stylesheet" href="css/style2.css">
+</head>
+<body>
+    <div class="address">
+        <label for="house no">บ้านเลขที่</label>
+        <input type="text" name="house_no" id="house_no">
+        <label for="moo">หมู่ที่</label>
+        <input type="text" name="moo" id="moo" class="shot-input">
+        <label for="soi">ซอย</label>
+        <input type="text" name="soi" id="soi">
+    </div>
+    <div class="address">
+        <label for="road">ถนน</label>
+        <input type="text" name="road" id="road">
+        <label for="tambon">ตำบล/แขวง</label>
+        <input type="text" name="tambon" id="tambon">
+        <label for="amphoe">อำเภอ/เขต</label>
+        <input type="text" name="amphoe" id="amphoe">
+        <label for="province">จังหวัด</label>
+        <input type="text" name="province" id="province">
+    </div>
+    <div class="subject">
+        <span>เรื่อง ขออนุญาต</span>
+        <input type="radio" id="sick" name="sick" value="sick">
+        <label for="sick">ลาป่วย</label>
+        <input type="radio" id="personal" name="sick" value="personal">
+        <label for="sick">ลากิจ</label>
+    </div>
+    <div class="recipient">
+        <span>เรียน ผู้อำนวยการวิทยาลัยเทคนิคสัตหีบ</span>
+    </div>
+    <div class="applicant">
+        <span>ระดับชั้น</span>
+        <input type="level" name="level" class="medium-input">
+        <label for="group_no">กลุ่มที่</label>
+        <input type="text" name="group_no" id="group_no" class="shot-input">
+        <label for="department">แผนกวิชา</label>
+        <input type="text" name="department" id="department" class="medium-input">
+        <label for="student_id">เลขประจำตัว</label>
+        <input type="text" name="student_id" id="student_id" class="medium-input">
+    </div>
+    <div class="reason">
+        <span>มีความประสงค์ขออณุญาต</span>
+        <input type="radio" id="sick" name="sick" value="sick">
+        <label for="sick">ลาป่วย</label>
+        <input type="radio" id="personal" name="sick" value="personal">
+        <label for="sick">ลากิจ</label>
+        <span class="reason-label">เนื่องจาก</span>
+        <input type="text" name="reason" aria-label="เหตุผลการลา">
+    </div>
+    <div class="duration">
+        <span>จึงเรียนมาเพื่อขออนุญาตลาเรียนตั้งแต่เวลา</span>
+        <input type="text" name="form-time" class="time-input" aria-label="เวลาเริ่มลา">น.
+        <span>วันที่</span>
+        <input type="text" name="day-time" class="shot-input" aria-label=";วันที่เริ่มลา">
+        <span>เดือน</span>
+        <input type="text" name="mount-time" class="shot-input" aria-label="เวลาเริ่มลา">น.
+        <span>พ.ศ.</span> 
+        <input type="text" name="from_year" class="short-input" aria-label="ปี พ.ศ. ที่เริ่มลา">
+    </div>
+    <div class="form-row leave-duration">
+        <span>ถึงเวลา</span>
+        <input type="text" name="to_time" class="time-input" aria-label="เวลาสิ้นสุดการลา"> น.
+
+    </div>
+
+
+</body>
+</html>

@@ -1,0 +1,26 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+body {
+  font-family: Tahoma, sans-serif;
+  padding: 20px;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+  table-layout: fixed;
+}
+
+th, td {
+  border: 1px solid gray;
+  text-align: center;
+  vertical-align: middle;
+  padding: 6px;
+  font-size: 13px;
+}
+
+th {
+  background-color: #f0f0f0;
+}

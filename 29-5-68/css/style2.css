@@ -1,0 +1,169 @@
+body {
+    font-family: 'Sarabun', sans-serif;
+    background-color: #f0f0f0;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* Align to top to see form start */
+    min-height: 100vh;
+    margin: 0;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.form-container {
+    background-color: #ffffff;
+    padding: 25px; /* Slightly reduced padding */
+    border: 1px solid #cccccc;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    width: 100%;
+    max-width: 700px; /* Adjusted max-width */
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+    font-size: 1.4em; /* Adjusted font size */
+}
+
+.form-row {
+    margin-bottom: 12px; /* Adjusted margin */
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center; /* Vertically align items in a row */
+}
+
+.form-row label, .form-row span {
+    margin-right: 6px;
+    color: #333;
+    white-space: nowrap;
+    line-height: 1.5; /* For better vertical alignment with inputs */
+}
+
+input[type="text"] {
+    border: none;
+    border-bottom: 1px dotted #555; /* Darker dots */
+    padding: 4px 0;
+    background-color: transparent;
+    flex-grow: 1; /* Default to grow */
+    min-width: 30px; /* Minimum width before growing */
+    font-family: 'Sarabun', sans-serif; /* Ensure font consistency */
+    font-size: 1em;
+}
+
+input[type="text"]:focus {
+    outline: none;
+    border-bottom: 1px solid #0066cc; /* Blue focus line */
+}
+
+input[type="checkbox"] {
+    margin-right: 4px;
+    margin-left: 8px;
+    vertical-align: middle;
+}
+input[type="checkbox"] + label {
+    margin-right: 10px; /* Space after checkbox label */
+    font-weight: normal;
+}
+
+.short-input {
+    width: 45px;
+    flex-grow: 0 !important;
+}
+
+.medium-input {
+    width: 90px;
+    flex-grow: 0 !important;
+}
+
+.long-input { /* For applicant name */
+    min-width: 200px; /* Allow to grow but set a min */
+    flex-grow: 1;
+}
+
+.time-input {
+    width: 35px;
+    flex-grow: 0 !important;
+    text-align: center;
+}
+
+.date-submission {
+    justify-content: flex-end;
+    margin-bottom: 20px;
+}
+.date-submission span { margin-left: 5px; }
+
+
+.address-group input[type="text"] {
+    margin-right: 10px; /* Space between inline address inputs */
+}
+
+.subject-line,
+.applicant-details {
+    padding-top: 5px; /* Some spacing for visual grouping */
+}
+
+.recipient-line span {
+    font-weight: bold; /* As it's a fixed recipient */
+    width: 100%; /* Make it take full width */
+    display: block;
+    margin-bottom: 10px;
+}
+.applicant-info span:last-of-type { /* "(นักเรียน/นักศึกษา)" */
+    margin-left: 5px;
+}
+
+.leave-reason-request .reason-label {
+    margin-left: 10px; /* Space before "เนื่องจาก" */
+}
+.leave-reason-request input[name="reason"] {
+    margin-left: 5px; /* Space after "เนื่องจาก" */
+    flex-grow: 1; /* Ensure it takes remaining space */
+}
+
+
+.leave-duration span, .leave-duration input {
+    margin-right: 3px; /* Tighter spacing for date/time parts */
+}
+.leave-duration span:first-of-type { margin-right: 5px;} /* "จึงเรียนมา..." / "ถึงเวลา" */
+
+
+.closing-line {
+    text-align: center;
+    margin-top: 25px;
+    margin-bottom: 5px;
+}
+.closing-line p {
+    margin: 0;
+}
+
+.signature-line {
+    margin-top: 20px; /* Space before signature */
+    align-items: flex-end;
+}
+.signature-line span:first-of-type { /* "ลงชื่อ" */
+    margin-right: 5px;
+}
+.signature-input {
+    min-width: 180px;
+    flex-grow: 1; /* Allow signature line to grow */
+    margin-right: 5px;
+}
+.signature-line span:last-of-type { /* "(นักเรียน/นักศึกษา)" */
+   font-size: 0.9em;
+   margin-left: 5px;
+}
+
+/* Ensure labels are associated with inputs for accessibility and usability */
+label {
+    cursor: pointer;
+}
+
+/* Add some spacing between groups of fields for clarity if needed */
+.address-group + .address-group {
+    margin-top: -5px; /* Reduce space if they are tightly packed */
+}
+.subject-line { margin-top: 15px; }
+.applicant-info { margin-top: 15px; }
+.leave-reason-request { margin-top: 15px; }
+.leave-duration { margin-top: 15px; }

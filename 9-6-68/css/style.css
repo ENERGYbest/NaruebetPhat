@@ -1,0 +1,27 @@
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.container{
+    display: grid;
+    background: dodgerblue;
+    gap: 5px;
+    border: 5px solid dodgerblue;
+
+}
+.container > div{
+    padding: 20px;
+    background: rgb(197, 226, 255);
+
+}
+.header{
+    grid-column: 1/4;
+}
+.menu{
+    grid-row: 2/4;
+}
+.footer{
+    grid-column: 2/4;
+}

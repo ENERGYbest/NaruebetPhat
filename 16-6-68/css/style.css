@@ -1,0 +1,225 @@
+body {
+  margin: 0;
+  font-family: 'Kanit', sans-serif;
+  background-color: #f8f8f8;
+  color: #111;
+}
+
+.container {
+  width: 1500px;
+  margin: auto;
+  background: #fff;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.top-nav {
+  display: flex;
+  background-color: #fff;
+  border-bottom: 2px solid #c40000;
+}
+
+.top-nav a {
+  flex: 1;
+  padding: 15px 0;
+  text-align: center;
+  text-decoration: none;
+  color: #c40000;
+  font-weight: bold;
+  transition: background 0.3s, color 0.3s;
+  border-right: 1px solid #ddd;
+}
+
+.top-nav a:last-child {
+  border-right: none;
+}
+
+.top-nav a:hover {
+  background-color: #c40000;
+  color: #fff;
+}
+
+.banner {
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.banner-text {
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 15px 30px;
+  border-radius: 10px;
+  color: #c40000;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.main-content {
+  display: flex;
+}
+
+.slider {
+  width: 1200px;
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+  margin: 0 auto;
+  border: 3px solid #c40000;
+  border-radius: 10px;
+}
+
+.slides-container {
+  display: flex;
+  width: calc(1200px * 14);
+  height: 100%;
+  animation: slideAnimation 9s infinite;
+}
+
+.slides-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+@keyframes slideAnimation {
+  0%   { transform: translateX(0); }
+  33%  { transform: translateX(0); }
+  
+  69%  { transform: translateX(-1200px); }
+  100% { transform: translateX(-1200px); }
+}
+
+
+
+.logo {
+  text-align: center;
+  font-size: 18px;
+  color: #c40000;
+  margin-bottom: 20px;
+  font-weight: bold;
+  margin-top: 30px;
+}
+
+.product-list {
+  list-style: none;
+  padding: 0;
+}
+
+.product-list li {
+  padding: 10px;
+  margin-bottom: 8px;
+  background: #fff;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  cursor: pointer;
+  text-align: center;
+  transition: all 0.2s ease-in-out;
+}
+
+.product-list li:hover,
+.product-list .active {
+  background-color: #c40000;
+  color: #fff;
+  font-weight: bold;
+}
+
+.content-area {
+  flex: 1;
+  padding: 20px;
+}
+
+.content-box {
+  background-color: #fff0f0;
+  padding: 15px;
+  text-align: left;
+  margin-bottom: 50px;
+  border: 2px dashed #c40000;
+  border-radius: 10px;
+}
+
+.product-grid {
+  display: flex;
+  gap: 30px;
+  justify-content: center;
+}
+
+
+
+.holographic-card img{
+  width: 100%;
+  height: 100%;
+  border-radius: 15px;
+}
+
+.footer {
+  height: 100px;
+  width: 100%;
+  background-color: #000;
+  color: #fff;
+  text-align: center;
+  line-height: 100px;
+  font-size: 16px;
+  border-top: 3px solid #c40000;
+}
+
+.holographic-container {
+  display: flex;
+  justify-content: center;
+  height: 100%;
+  padding: 1px;
+}
+
+.holographic-card {
+  width: 200px;
+  height: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  border: 3px solid #c40000;
+  border-radius: 15px;
+  box-shadow: 0 0 10px rgba(196,0,0,0.2);
+  transition: all 0.5s ease;
+  margin: 10px;
+}
+
+.holographic-card h2 {
+  color: rgb(156, 5, 5);
+  font-size: 2rem;
+  position: relative;
+  z-index: 2;
+}
+
+.holographic-card::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    0deg, 
+    transparent, 
+    transparent 30%, 
+    rgba(255, 0, 0, 0.665)
+  );
+  transform: rotate(-45deg);
+  transition: all 0.5s ease;
+  opacity: 0;
+}
+
+.holographic-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 20px rgba(255, 17, 17, 0.5);
+}
+
+.holographic-card:hover::before {
+  opacity: 1;
+  transform: rotate(-45deg) translateY(100%);
+}
+
+
+

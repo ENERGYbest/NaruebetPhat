@@ -1,0 +1,102 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #f4f4f4;
+  color: #333;
+}
+
+.top-header {
+  background-color: #002b55;
+  color: white;
+  padding: 10px;
+  text-align: center;
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  text-align: left;
+  padding-bottom: ;
+}
+
+.header-img img {
+  width: 80%;
+  height: auto;
+  padding-bottom: 10px;
+}
+
+.navbar {
+  background-color: #144e9b;
+}
+
+.navbar ul {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.navbar li {
+  margin: 0 15px;
+}
+
+.navbar a {
+  color: white;
+  text-decoration: none;
+  padding: 10px 0;
+  display: block;
+}
+
+.banner-section {
+  display: flex;
+  flex-wrap: wrap;
+  background: white;
+  padding: 10px ;
+}
+
+.banner {
+  display: flex;
+  margin: 10px;
+  height: 190px;
+  text-align: center;
+}
+
+.content-section {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  padding: 30px 10px;
+}
+
+.content-box {
+  width: 45%;
+  background-color: #e0e7ff;
+  border: 1px solid #ccc;
+  margin: 10px;
+  text-align: center;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.content-box img {
+  width: 100%;
+  height: auto;
+  border-radius: 5px;
+}
+
+.footer {
+  background-color: #001a33;
+  color: white;
+  text-align: center;
+  padding: 20px;
+  margin-top: 30px; 
+}
+a:hover{
+    color: yellow;
+    text-decoration: underline;
+}

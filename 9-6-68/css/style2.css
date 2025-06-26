@@ -1,0 +1,94 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Itim";
+}
+
+body {
+    font-family: sans-serif;
+    background-color: #fff;
+    color: #333;
+}
+
+.header1 {
+    background-color: #000000;
+    height: 30px;
+}
+.header {
+    background-color: #4ba89e;
+    height: 150px;
+    font-size: 72px;
+    text-align: center;
+    color: white;
+    padding: 30px;
+}
+
+.menu {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 10px;
+    padding: 20px;
+    background-color: #fff;
+}
+.menu-item {
+    background-color: #f781f3;
+    height: 40px;
+}
+
+.section-title {
+    text-align: center;
+    margin: 20px 0;
+    font-weight: bold;
+}
+
+.grid {
+    display: grid;
+    gap: 10px;
+    padding: 10px 20px;
+}
+
+.green-grid {
+    grid-template-columns: repeat(2, 1fr);
+}
+.green-grid .box {
+    background-color: #7efcd2;
+    height: 100px;
+}
+
+.yellow-grid {
+    grid-template-columns: 1fr 2fr;
+}
+.yellow-grid .box {
+    background-color: #fcf178;
+    height: 100px;
+}
+
+.blue-grid {
+    grid-template-columns: repeat(2, 1fr);
+}
+.blue-grid .box {
+    background-color: #6ea0ff;
+    height: 100px;
+}
+
+.pink-grid {
+    grid-template-columns: 1fr;
+}
+.pink-grid .box {
+    background-color: #f9b3bb;
+    height: 120px;
+}
+
+.footer {
+    border-top: 2px solid #000000;
+    text-align: right;
+    padding: 20px 10px;
+    font-size: 32px;
+}
+.icons {
+    margin-top: 10px;
+}
+.icons span {
+    margin: 0 10px;
+}

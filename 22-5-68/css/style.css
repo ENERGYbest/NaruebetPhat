@@ -1,0 +1,50 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+    header{
+        width: 100%;
+        height: 599px;
+        background:url(../img/header.png) no-repeat;
+    }
+    nav{
+        height: 50px;
+        background: black;
+        }
+    nav li{
+        float: left;
+        margin: 0px 25px;
+        list-style-type: none;
+    }
+    nav li a{
+        color: white;
+        text-decoration: none;
+        line-height: 50px;
+    }
+    .left{
+        float: left;
+        width: 60%;
+        height: 500px;
+        background: rgb(255, 176, 242);
+    }
+    aside{
+        float: left;
+        width: 40%;
+        height: 600px;
+        background: rgb(148, 223, 255);
+    }
+    section{
+        height: 300px;
+        background: rgb(161, 255, 159);
+    }
+    article{
+        height: 300px;
+        background: rgb(254, 242, 128);
+    }
+    footer{
+        clear: both;
+        width: 100%;
+        height: 100px;
+        background: rgb(154, 214, 167);
+    }
