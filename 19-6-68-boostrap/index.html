@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>หน้าแรก - วิทยาลัยเทคนิคสัตหีบ</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <style>
+        @font-face {
+            font-family: 'Kanit';
+            src: url('fonts/Kanit-Regular.ttf') format('truetype');
+        }
+
+        * {
+            font-family: 'Kanit', sans-serif;
+        }
+    </style>
+</head>
+
+<body class="bg-secondary">
+    
+    <nav class="navbar navbar-expand-lg bg-dark" data-bs-theme="dark">
+        <div class="container">
+            <a class="navbar-brand" href="http://www.tatc.ac.th" target="_blank">
+                <img src="img/logo.gif" width="30px" alt="Logo">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">สมาชิก</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            ข้อมูลเพิ่มเติม
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">สมัครสมาชิก</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="#">หน้าหลัก</a></li>
+                            <li><a class="dropdown-item" href="#">ค้นหาบทความ</a></li>
+                            <li><a class="dropdown-item" href="#">อัลบั้มรูปภาพ</a></li>
+                            <li><a class="dropdown-item" href="#">เนื้อหาเพิ่มเติม</a></li>
+                            <li><a class="dropdown-item" href="#">เพื่อนสมาชิก</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-center">
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <i class="bi bi-house-door-fill fs-5"></i>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#authModal">
+                            เข้าสู่ระบบ
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"
+                aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
+                aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
+                aria-label="Slide 3"></button>
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3"
+                aria-label="Slide 4"></button>
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="4"
+                aria-label="Slide 5"></button>
+        </div>
+        <div class="carousel-inner">
+            <div class="carousel-item active" data-bs-interval="2000">
+                <img src="img/slide1.jpg" class="d-block w-100" alt="Slide 1">
+            </div>
+            <div class="carousel-item" data-bs-interval="2000">
+                <img src="img/slide2.jpg" class="d-block w-100" alt="Slide 2">
+            </div>
+            <div class="carousel-item" data-bs-interval="2000">
+                <img src="img/slide3.jpg" class="d-block w-100" alt="Slide 3">
+            </div>
+            <div class="carousel-item" data-bs-interval="2000">
+                <img src="img/slide4.jpg" class="d-block w-100" alt="Slide 4">
+            </div>
+            <div class="carousel-item" data-bs-interval="2000">
+                <img src="img/slide5.jpg" class="d-block w-100" alt="Slide 5">
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval"
+            data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval"
+            data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+
+    <div class="container my-3 bg-light py-3">
+        <ul class="nav nav-pills nav-fill flex-column flex-sm-row">
+            <li class="nav-item m-1"><a class="nav-link btn btn-secondary text-white" href="#">หน่วยงานการศึกษา</a></li>
+            <li class="nav-item m-1"><a class="nav-link btn btn-secondary text-white" href="#">ฝ่ายบริหารทรัพยากร</a></li>
+            <li class="nav-item m-1"><a class="nav-link btn btn-secondary text-white" href="#">ฝ่ายวิชาการ</a></li>
+            <li class="nav-item m-1"><a class="nav-link btn btn-secondary text-white" href="#">ฝ่ายแผนงานและความร่วมมือ</a></li>
+            <li class="nav-item m-1"><a class="nav-link btn btn-secondary text-white" href="#">ฝ่ายพัฒนากิจการนักเรียนนักศึกษา</a></li>
+            <li class="nav-item m-1"><a class="nav-link btn btn-secondary text-white" href="#">ITA/ข้อมูลสาธารณะ</a></li>
+        </ul>
+    </div>
+
+    <div class="container my-4">
+        <div class="row">
+            <div class="col-lg-3 mb-4">
+                <div class="bg-white p-3 rounded shadow-sm h-100">
+                    <img src="img/logo.gif" alt="logo" width="150" class="d-block mx-auto mb-3">
+                    <p class="text-center small">
+                        กม.160 193 หมู่3 ต.นาจอมเทียน<br>
+                        อ.สัตหีบ ข.ชลบุรี 20250<br>
+                        โทรศัพท์ 038-238398, 038-238527<br>
+                        โทรสาร 038-238268<br>
+                        E-mail : saraban@tatc.ac.th
+                    </p>
+                    <img src="img/basic.png" alt="Basic Info" class="img-fluid rounded mb-2">
+                    <img src="img/class.png" alt="Class Info" class="img-fluid rounded">
+                </div>
+            </div>
+            <div class="col-lg-6 mb-4">
+                <div class="bg-white p-3 rounded shadow-sm h-100">
+                    <img src="img/main.png" alt="Main Content 1" width="100%" class="img-fluid rounded mb-3">
+                    <img src="img/main2.png" alt="Main Content 2" width="100%" class="img-fluid rounded mb-3">
+                </div>
+            </div>
+            <div class="col-lg-3 mb-4">
+                <div class="bg-white p-3 rounded shadow-sm h-100">
+                    <img src="img/left1.png" alt="Side Content 1" class="img-fluid rounded mb-3">
+                    <img src="img/left2.png" alt="Side Content 2" class="img-fluid rounded mb-3">
+                    <img src="img/left3.png" alt="Side Content 3" class="img-fluid rounded mb-3">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="bg-dark text-white py-4 mt-4">
+        <div class="container text-center">
+            <p class="mb-0">&copy; 2568 วิทยาลัยเทคนิคสัตหีบ กม.160 193 หมู่ 3 ต.นาจอมเทียน อ.สัตหีบ จ.ชลบุรี 20250</p>
+        </div>
+    </footer>
+
+    <div class="modal fade" id="authModal" tabindex="-1" aria-labelledby="authModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="authModalLabel">เข้าสู่ระบบ / สมัครสมาชิก</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    
+                    <ul class="nav nav-tabs nav-fill mb-3" id="myTab" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link active" id="login-tab" data-bs-toggle="tab" data-bs-target="#login-pane" type="button" role="tab" aria-controls="login-pane" aria-selected="true">
+                                เข้าสู่ระบบ
+                            </button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="register-tab" data-bs-toggle="tab" data-bs-target="#register-pane" type="button" role="tab" aria-controls="register-pane" aria-selected="false">
+                                สมัครสมาชิก
+                            </button>
+                        </li>
+                    </ul>
+
+                    <div class="tab-content p-2" id="myTabContent">
+                        
+                        <div class="tab-pane fade show active" id="login-pane" role="tabpanel" aria-labelledby="login-tab" tabindex="0">
+                            <form>
+                                <div class="mb-3">
+                                    <label for="loginEmail" class="form-label">อีเมล</label>
+                                    <input type="email" class="form-control" id="loginEmail" placeholder="you@example.com">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="loginPassword" class="form-label">รหัสผ่าน</label>
+                                    <input type="password" class="form-control" id="loginPassword" placeholder="กรอกรหัสผ่าน">
+                                </div>
+                                <div class="d-grid mt-4">
+                                    <button type="submit" class="btn btn-primary">เข้าสู่ระบบ</button>
+                                </div>
+                            </form>
+                        </div>
+
+                        <div class="tab-pane fade" id="register-pane" role="tabpanel" aria-labelledby="register-tab" tabindex="0">
+                            <form>
+                                <div class="mb-3">
+                                    <label for="registerUsername" class="form-label">ชื่อผู้ใช้</label>
+                                    <input type="text" class="form-control" id="registerUsername" placeholder="ตั้งชื่อสำหรับใช้ในเว็บ">
+                                </div>
+                                 <div class="mb-3">
+                                    <label for="registerEmail" class="form-label">อีเมล</label>
+                                    <input type="email" class="form-control" id="registerEmail" placeholder="กรอกอีเมลที่ใช้งานได้">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="registerPassword" class="form-label">รหัสผ่าน</label>
+                                    <input type="password" class="form-control" id="registerPassword" placeholder="ตั้งรหัสผ่านอย่างน้อย 8 ตัวอักษร">
+                                </div>
+                                 <div class="d-grid mt-4">
+                                    <button type="submit" class="btn btn-success">ยืนยันการสมัครสมาชิก</button>
+                                </div>
+                            </form>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
