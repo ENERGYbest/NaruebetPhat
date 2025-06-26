@@ -30,6 +30,7 @@
         @keyframes twinkle { 0%{opacity:0.2} 50%{opacity:0.8} 100%{opacity:0.2} }
         @keyframes slide-in { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
         
+        /* --- (แก้ไข) เพิ่ม Keyframes สำหรับ Fade Animation --- */
         @keyframes fade-out { from { opacity: 1; } to { opacity: 0; } }
         @keyframes fade-in { from { opacity: 0; } to { opacity: 1; } }
 
@@ -70,14 +71,12 @@
                         15vw 55vh 0px, 50vw 80vh 1px, 95vw 45vh 0px, 20vw 10vh 1px, 80vw 70vh 0px, 5vw 90vh 1px;
         }
 
-        /* --- (อัปเกรด 2) Enhanced Glassmorphism --- */
         .portfolio-container {
             display: flex; width: 100%; max-width: 1200px;
             height: 80vh; max-height: 700px;
-            background-color: rgba(30, 41, 59, 0.6); 
-            backdrop-filter: blur(16px);
-            border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            background-color: rgba(22, 27, 34, 0.8);
+            backdrop-filter: blur(12px);
+            border-radius: 20px; border: 1px solid var(--border-color);
             box-shadow: 0 20px 50px var(--shadow-color);
             overflow: hidden;
             opacity: 0;
@@ -86,20 +85,13 @@
         }
         .portfolio-container.page-exit { opacity: 0; transform: scale(0.95); }
 
-        /* --- (อัปเกรด 1) Parallax Hover Effect --- */
-        .spotlight-container { 
-            flex-basis: 65%; display: flex; flex-direction: column; position: relative;
-            perspective: 1000px; /* สร้างระยะความลึกสำหรับเอฟเฟกต์ 3D */
-        }
-        .project-list-container { flex-basis: 35%; padding: 2rem 1rem 2rem 2rem; overflow-y: auto; border-left: 1px solid rgba(255, 255, 255, 0.1); background-color: rgba(13, 17, 23, 0.5); }
+        .spotlight-container { flex-basis: 65%; display: flex; flex-direction: column; position: relative; }
+        .project-list-container { flex-basis: 35%; padding: 2rem 1rem 2rem 2rem; overflow-y: auto; border-left: 1px solid var(--border-color); background-color: rgba(13, 17, 23, 0.5); }
         
         .spotlight-image-wrapper { flex-grow: 1; overflow: hidden; position: relative; }
-        #spotlight-image { 
-            width: 100%; height: 100%; object-fit: contain; 
-            /* เพิ่ม transition เพื่อให้การขยับสมูท */
-            transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1);
-        }
+        #spotlight-image { width: 100%; height: 100%; object-fit: contain; }
         
+        /* --- (แก้ไข) เพิ่มคลาสสำหรับควบคุมอนิเมชั่น Fade --- */
         #spotlight-image.fading {
             animation-duration: 0.5s;
             animation-fill-mode: forwards;
@@ -120,42 +112,91 @@
             font-size: 1.5rem; font-weight: 700; margin-bottom: 1.5rem;
             padding-bottom: 1rem; border-bottom: 1px solid var(--border-color);
         }
-
-        /* --- (อัปเกรด 3) Dynamic List Hover --- */
         .project-list-item {
             padding: 1rem; margin-bottom: 1rem; border-radius: 10px;
-            cursor: pointer;
-            transition: background-color 0.3s ease, transform 0.3s ease;
+            cursor: pointer; transition: background-color 0.3s ease;
             color: var(--text-secondary);
         }
-        .project-list-item:hover {
-            background-color: rgba(88, 166, 255, 0.1);
-            color: var(--text-primary);
-            transform: translateX(10px) scale(1.03);
-        }
+        .project-list-item:hover { background-color: rgba(88, 166, 255, 0.1); color: var(--text-primary); }
         .project-list-item.active { background-color: var(--accent-color); color: var(--bg-dark); font-weight: 500; }
         
-        .project-list-container::-webkit-scrollbar { width: 8px; }
-        .project-list-container::-webkit-scrollbar-track { background: transparent; }
-        .project-list-container::-webkit-scrollbar-thumb { background-color: var(--border-color); border-radius: 10px; border: 2px solid var(--container-bg); }
-        .project-list-container::-webkit-scrollbar-thumb:hover { background-color: var(--text-secondary); }
-
-        /* === ส่วนของการทำ Responsive Design === */
-        @media (max-width: 992px) {
-            body { padding: 0; }
-            .portfolio-container { flex-direction: column; height: 100vh; max-height: none; border-radius: 0; border: none; }
-            .spotlight-container { height: 60vh; }
-            .spotlight-info { padding: 1.5rem; }
-            #spotlight-title { font-size: 1.5rem; }
-            .project-list-container { flex-basis: auto; height: 40vh; border-left: none; border-top: 1px solid var(--border-color); padding: 1.5rem 1rem; }
-            .list-header { font-size: 1.25rem; margin-bottom: 1rem; }
+        /* --- (แก้ไข) เพิ่ม CSS สำหรับ Custom Scrollbar --- */
+        .project-list-container::-webkit-scrollbar {
+            width: 8px;
+        }
+        .project-list-container::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .project-list-container::-webkit-scrollbar-thumb {
+            background-color: var(--border-color);
+            border-radius: 10px;
+            border: 2px solid var(--container-bg);
+        }
+        .project-list-container::-webkit-scrollbar-thumb:hover {
+            background-color: var(--text-secondary);
         }
 
-        @media (max-width: 768px) {
-            .spotlight-info { flex-direction: column; align-items: flex-start; gap: 1rem; }
-            #spotlight-title { font-size: 1.3rem; }
-            #spotlight-link { padding: 0.6rem 1.2rem; }
-        }
+        /* === (แก้ไข) ส่วนของการทำ Responsive Design ให้สวยงาม === */
+@media (max-width: 992px) {
+    body {
+        padding: 0; /* สำหรับหน้าจอมือถือ ให้ container เต็มจอ */
+    }
+
+    .portfolio-container {
+        flex-direction: column; /* เปลี่ยนเป็นแนวตั้ง */
+        height: 100vh;
+        max-height: none;
+        border-radius: 0;
+        border: none;
+    }
+
+    .spotlight-container {
+        height: 60vh; /* ให้ส่วนแสดงผลหลักสูง 60% ของหน้าจอ */
+    }
+    
+    .spotlight-info {
+        /* ลด padding ลงเล็กน้อยสำหรับจอแท็บเล็ต */
+        padding: 1.5rem;
+    }
+
+    #spotlight-title {
+        /* ลดขนาดฟอนต์หัวข้อหลัก */
+        font-size: 1.5rem;
+    }
+
+    .project-list-container {
+        flex-basis: auto; /* ไม่ต้องกำหนด flex-basis */
+        height: 40vh; /* ให้ส่วนรายการสูง 40% ของหน้าจอ */
+        border-left: none;
+        border-top: 1px solid var(--border-color);
+        /* ปรับ padding ให้เหมาะสม */
+        padding: 1.5rem 1rem;
+    }
+    
+    .list-header {
+        /* ลดขนาดฟอนต์หัวข้อรายการ */
+        font-size: 1.25rem;
+        margin-bottom: 1rem;
+    }
+}
+
+/* --- เพิ่มการปรับปรุงสำหรับหน้าจอมือถือที่เล็กลงมาอีก --- */
+@media (max-width: 768px) {
+    .spotlight-info {
+        flex-direction: column; /* จัดเรียง Title และปุ่มในแนวตั้ง */
+        align-items: flex-start; /* จัดชิดซ้าย */
+        gap: 1rem; /* เพิ่มช่องว่างระหว่าง Title และปุ่ม */
+    }
+
+    #spotlight-title {
+        font-size: 1.3rem; /* ลดขนาดฟอนต์ลงอีกสำหรับจอมือถือ */
+    }
+
+    #spotlight-link {
+        /* ลดขนาดปุ่มเล็กน้อย */
+        padding: 0.6rem 1.2rem;
+    }
+}
     </style>
 </head>
 <body>
@@ -188,14 +229,14 @@
 
     <script>
         const projects = [
-            { title: "19-5-68", image: "19-5-68/finish/1layout.png", link: "19-5-68/index.html" },
-            { title: "22-5-68", image: "22-5-68/finish/layout.png", link: "22-5-68/index2.html" },
-            { title: "26-5-68", image: "26-5-68/finish/website.png", link: "26-5-68/index2.html" },
-            { title: "29-5-68", image: "29-5-68/finish/login web.png", link: "29-5-68/login.html" },
-            { title: "5-6-68", image: "5-6-68/finish/web tatc.png", link: "5-6-68/index2.html" },
-            { title: "9-6-68", image: "9-6-68/finish/2web.png", link: "9-6-68/index2.html" },
-            { title: "16-6-68", image: "16-6-68/finish/web.png", link: "16-6-68/index.html" },
-            { title: "19-6-68", image: "19-6-68 bootstrap/finish/web.png", link: "19-6-68 bootstrap/index.html" }
+            { title: "19-5-68 (ออกแบบ Layout หน้าเว็บไซต์)", image: "19-5-68/finish/1layout.png", link: "19-5-68/index.html" },
+            { title: "22-5-68 (semantic element)", image: "22-5-68/finish/layout.png", link: "22-5-68/index2.html" },
+            { title: "26-5-68 (การสร้างตาราง)", image: "26-5-68/finish/website.png", link: "26-5-68/index2.html" },
+            { title: "29-5-68 (การสร้างฟอร์ม Login)", image: "29-5-68/finish/login web.png", link: "29-5-68/login.html" },
+            { title: "5-6-68 (responsive layout flex box)", image: "5-6-68/finish/web tatc.png", link: "5-6-68/index2.html" },
+            { title: "9-6-68 (การสร้าง Grid Layout)", image: "9-6-68/finish/2web.png", link: "9-6-68/index2.html" },
+            { title: "16-6-68 (ออกแบบเว็บด้วย HTML และ CSS)", image: "16-6-68/finish/web.png", link: "16-6-68/index.html" },
+            { title: "19-6-68 (สร้างวิทยาลัยเคนิคสัตหีบ)", image: "19-6-68 bootstrap/finish/web.png", link: "19-6-68 bootstrap/index.html" }
         ];
         
         const portfolioContainer = document.querySelector('.portfolio-container');
@@ -204,27 +245,6 @@
         const spotlightTitle = document.getElementById('spotlight-title');
         const spotlightLink = document.getElementById('spotlight-link');
         let isAnimating = false;
-
-        // --- (อัปเกรด 1) โค้ดสำหรับ Parallax Hover Effect ---
-        const spotlightContainer = document.querySelector('.spotlight-container');
-
-        spotlightContainer.addEventListener('mousemove', (e) => {
-            if (window.innerWidth < 992) return; // ไม่ต้องทำงานบนมือถือ
-
-            const { left, top, width, height } = spotlightContainer.getBoundingClientRect();
-            const x = e.clientX - left;
-            const y = e.clientY - top;
-
-            const rotateX = ((y / height) - 0.5) * -20;
-            const rotateY = ((x / width) - 0.5) * 20;
-
-            spotlightImage.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.05)`;
-        });
-
-        spotlightContainer.addEventListener('mouseleave', () => {
-            spotlightImage.style.transform = 'rotateX(0deg) rotateY(0deg) scale(1)';
-        });
-        // --- สิ้นสุดส่วนของ Parallax ---
 
         function animateTitle(newText = null) {
             const chars = spotlightTitle.querySelectorAll('.char');
@@ -267,29 +287,41 @@
             });
         }
         
+        // --- (แก้ไข) อัปเดตฟังก์ชัน updateSpotlight ทั้งหมด ---
         function updateSpotlight(index) {
             if (isAnimating) return;
             isAnimating = true;
 
             const project = projects[index];
+
+            // 1. สั่งให้ Title และรูปภาพปัจจุบันจางหายไป
             animateTitle();
             spotlightImage.style.animationName = 'fade-out';
             spotlightImage.classList.add('fading');
 
+            // 2. ตั้งเวลาเพื่อเปลี่ยนข้อมูลหลังจากอนิเมชั่น fade-out ทำงานเสร็จ
             setTimeout(() => {
+                // 2.1 อัปเดต Source ของรูปภาพและ Link
                 spotlightImage.src = project.image;
                 spotlightLink.href = project.link;
+
+                // 2.2 อัปเดต Title พร้อมอนิเมชั่น
                 animateTitle(project.title);
+
+                // 2.3 สั่งให้รูปภาพใหม่ปรากฏขึ้น (Fade in)
                 spotlightImage.style.animationName = 'fade-in';
 
+                // อัปเดตคลาส active ในลิสต์รายการ
                 document.querySelectorAll('.project-list-item').forEach(item => item.classList.remove('active'));
                 document.querySelector(`.project-list-item[data-index='${index}']`).classList.add('active');
-            }, 500);
 
+            }, 500); // ระยะเวลาต้องเท่ากับ animation-duration ใน CSS
+
+            // 3. เมื่ออนิเมชั่นทั้งหมดเสร็จสิ้น
             setTimeout(() => {
-                spotlightImage.classList.remove('fading');
-                isAnimating = false;
-            }, 1000);
+                spotlightImage.classList.remove('fading'); // ลบคลาสเพื่อเตรียมพร้อมสำหรับครั้งถัดไป
+                isAnimating = false; // ปลดล็อคการคลิก
+            }, 1000); // ระยะเวลารวมของ fade-out (500ms) + fade-in (500ms)
         }
 
         spotlightLink.addEventListener('click', function(event) {
