@@ -9,21 +9,17 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="img/me.jpg" type="image/x-icon">
     
+    <style>
 
+    </style>
 
 </head>
 <body>
     
     <div class="background-container">
-        <div class="aurora-bg">
-            <div class="blob one"></div>
-            <div class="blob two"></div>
-            <div class="blob three"></div>
         </div>
-        <div class="stars-bg"></div>
-        <div class="stars-bg-2"></div>
-    </div>
 
     <div class="portfolio-container">
         <div class="spotlight-container">
@@ -45,12 +41,36 @@
         const projects = [
             { title: "19-5-68 (ออกแบบ Layout หน้าเว็บไซต์)", image: "19-5-68/finish/1layout.png", link: "19-5-68/index.html" },
             { title: "22-5-68 (semantic element)", image: "22-5-68/finish/layout.png", link: "22-5-68/index2.html" },
-            { title: "26-5-68 (การสร้างตาราง)", image: "26-5-68/finish/website.png", link: "26-5-68/index2.html" },
-            { title: "29-5-68 (การสร้างฟอร์ม Login)", image: "29-5-68/finish/login web.png", link: "29-5-68/login.html" },
-            { title: "5-6-68 (responsive layout flex box)", image: "5-6-68/finish/web tatc.png", link: "5-6-68/index2.html" },
-            { title: "9-6-68 (การสร้าง Grid Layout)", image: "9-6-68/finish/2web.png", link: "9-6-68/index2.html" },
-            { title: "16-6-68 (ออกแบบเว็บด้วย HTML และ CSS)", image: "16-6-68/finish/web.png", link: "16-6-68/index.html" },
+            {title: "26-5-68 (การสร้างตาราง)",
+                subProjects: [
+                    { title: "จำนวนนักเรียน", image: "26-5-68/finish/web นักเรียน.png", link: "26-5-68/index.html" },
+                    { title: "ตาราง4-12", image: "26-5-68/finish/website.png", link: "26-5-68/index2.html" },
+                ]
+            },
+            { 
+                title: "29-5-68 (การสร้างฟอร์ม)",
+                subProjects: [
+                    { title: "ฟอร์ม Login", image: "29-5-68/finish/login web.png", link: "29-5-68/login.html" },
+                    { title: "ฟอร์มสำหรับการลา", image: "29-5-68/finish/letter web.png", link: "29-5-68/letter.html" },
+                ]
+            },
+            { 
+                title: "5-6-68 (responsive layout flex box)",
+                            subProjects: [
+                    { title: "สร้าง responsive layout flex box", image: "5-6-68/finish/Web.png", link: "5-6-68/index.html" },
+                    { title: "แบบฝึกหัด", image: "5-6-68/finish/web tatc.png", link: "5-6-68/index2.html" },
+                ]
+            },
+            { 
+                title: "9-6-68 (Grid Layout)",
+                    subProjects: [
+                    { title: "การสร้าง Grid Layout", image: "9-6-68/finish/1 web.png", link: "9-6-68/index.html" },
+                    { title: "แบบฝึกหัด Grid Layout", image: "9-6-68/finish/2web.png", link: "9-6-68/index2.html" },
+                ]
+            },
+            { title: "16-6-68 (แบบทดสอบที่ 1 ออกแบบเว็บ)", image: "16-6-68/finish/web.png", link: "16-6-68/index.html" },
             { title: "19-26-6-68 (สร้างวิทยาลัยเคนิคสัตหีบ,Modal)", image: "19-6-68-boostrap/finish/web.png", link: "19-6-68-boostrap/index.html" }
+           
         ];
         
         const portfolioContainer = document.querySelector('.portfolio-container');
@@ -90,52 +110,71 @@
 
         function populateProjectList() {
             projects.forEach((project, index) => {
-                const item = document.createElement('div');
-                item.className = 'project-list-item';
-                item.textContent = project.title;
-                item.dataset.index = index;
-                item.addEventListener('click', () => {
-                    if(!item.classList.contains('active')) updateSpotlight(index)
-                });
-                projectList.appendChild(item);
+                if (project.subProjects) {
+                    const dropdownContainer = document.createElement('div');
+                    dropdownContainer.className = 'project-dropdown-container';
+                    const toggleItem = document.createElement('div');
+                    toggleItem.className = 'project-list-item dropdown-toggle';
+                    toggleItem.innerHTML = `${project.title} <span class="dropdown-arrow">▼</span>`;
+                    toggleItem.addEventListener('click', () => {
+                        dropdownContainer.classList.toggle('open');
+                    });
+                    const subList = document.createElement('div');
+                    subList.className = 'sub-project-list';
+                    project.subProjects.forEach((subProject, subIndex) => {
+                        const subItem = document.createElement('div');
+                        subItem.className = 'project-list-item sub-item';
+                        subItem.textContent = subProject.title;
+                        subItem.style.transitionDelay = `${subIndex * 60}ms`;
+                        subItem.addEventListener('click', (e) => {
+                            e.stopPropagation();
+                            if (!subItem.classList.contains('active')) {
+                                updateSpotlight(subProject, subItem, dropdownContainer);
+                            }
+                        });
+                        subList.appendChild(subItem);
+                    });
+                    dropdownContainer.appendChild(toggleItem);
+                    dropdownContainer.appendChild(subList);
+                    projectList.appendChild(dropdownContainer);
+                } else {
+                    const item = document.createElement('div');
+                    item.className = 'project-list-item';
+                    item.textContent = project.title;
+                    item.dataset.index = index;
+                    item.addEventListener('click', () => {
+                        if (!item.classList.contains('active')) {
+                            updateSpotlight(project, item);
+                        }
+                    });
+                    projectList.appendChild(item);
+                }
             });
         }
         
-        // --- (แก้ไข) อัปเดตฟังก์ชัน updateSpotlight ทั้งหมด ---
-        function updateSpotlight(index) {
+        function updateSpotlight(project, clickedItem, parentContainer = null) {
             if (isAnimating) return;
             isAnimating = true;
-
-            const project = projects[index];
-
-            // 1. สั่งให้ Title และรูปภาพปัจจุบันจางหายไป
             animateTitle();
             spotlightImage.style.animationName = 'fade-out';
             spotlightImage.classList.add('fading');
-
-            // 2. ตั้งเวลาเพื่อเปลี่ยนข้อมูลหลังจากอนิเมชั่น fade-out ทำงานเสร็จ
             setTimeout(() => {
-                // 2.1 อัปเดต Source ของรูปภาพและ Link
                 spotlightImage.src = project.image;
                 spotlightLink.href = project.link;
-
-                // 2.2 อัปเดต Title พร้อมอนิเมชั่น
                 animateTitle(project.title);
-
-                // 2.3 สั่งให้รูปภาพใหม่ปรากฏขึ้น (Fade in)
                 spotlightImage.style.animationName = 'fade-in';
-
-                // อัปเดตคลาส active ในลิสต์รายการ
-                document.querySelectorAll('.project-list-item').forEach(item => item.classList.remove('active'));
-                document.querySelector(`.project-list-item[data-index='${index}']`).classList.add('active');
-
-            }, 500); // ระยะเวลาต้องเท่ากับ animation-duration ใน CSS
-
-            // 3. เมื่ออนิเมชั่นทั้งหมดเสร็จสิ้น
+                document.querySelectorAll('.project-list-item.active, .project-dropdown-container.active').forEach(item => {
+                    item.classList.remove('active');
+                });
+                clickedItem.classList.add('active');
+                if (parentContainer) {
+                    parentContainer.classList.add('active');
+                }
+            }, 500);
             setTimeout(() => {
-                spotlightImage.classList.remove('fading'); // ลบคลาสเพื่อเตรียมพร้อมสำหรับครั้งถัดไป
-                isAnimating = false; // ปลดล็อคการคลิก
-            }, 1000); // ระยะเวลารวมของ fade-out (500ms) + fade-in (500ms)
+                spotlightImage.classList.remove('fading');
+                isAnimating = false;
+            }, 1000);
         }
 
         spotlightLink.addEventListener('click', function(event) {
@@ -148,11 +187,21 @@
         function init() {
             populateProjectList();
             if (projects.length > 0) {
-                const firstProject = projects[0];
-                spotlightImage.src = firstProject.image;
-                spotlightLink.href = firstProject.link;
-                animateTitle(firstProject.title);
-                document.querySelector(`.project-list-item[data-index='0']`).classList.add('active');
+                let firstProjectToShow = projects[0];
+                let firstItemElement;
+                if (firstProjectToShow.subProjects) {
+                     firstProjectToShow = firstProjectToShow.subProjects[0];
+                     const firstDropdown = projectList.querySelector('.project-dropdown-container');
+                     firstDropdown.classList.add('open', 'active');
+                     firstItemElement = firstDropdown.querySelector('.sub-item');
+                     firstItemElement.classList.add('active');
+                } else {
+                    firstItemElement = projectList.querySelector(`.project-list-item[data-index='0']`);
+                    firstItemElement.classList.add('active');
+                }
+                spotlightImage.src = firstProjectToShow.image;
+                spotlightLink.href = firstProjectToShow.link;
+                animateTitle(firstProjectToShow.title);
             }
         }
         
