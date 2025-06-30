@@ -1,211 +1,333 @@
 <!DOCTYPE html>
-<html lang="th">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ผลงาน | นฤเบศ แพทย์ประสิทธิ์</title>
+ <html lang="th">
+ <head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>ผลงาน | นฤเบศ แพทย์ประสิทธิ์</title>
+     
+     <link rel="preconnect" href="https://fonts.googleapis.com">
+     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+     <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;500;700&display=swap" rel="stylesheet">
+     <link rel="stylesheet" href="style.css">
+     <link rel="icon" href="img/me.jpg" type="image/x-icon">
+     
+     <style>
+         /* --- Dropdown Container & Toggle --- */
+ 
+         /* สไตล์สำหรับตัวครอบ Dropdown ทั้งหมด */
+         .project-dropdown-container {
+             border-radius: 8px; /* ทำให้ขอบมน */
+             overflow: hidden; /* ซ่อนส่วนที่เกินขอบเขต */
+             margin-bottom: 8px; /* เพิ่มระยะห่างระหว่างกลุ่ม */
+             background-color: rgba(0, 0, 0, 0.2); /* พื้นหลังโปร่งแสงเล็กน้อย */
+             transition: background-color 0.3s ease;
+         }
+ 
+         /* สไตล์เมื่อ Dropdown ถูกเลือก (active) */
+         .project-dropdown-container.active {
+             background-color: rgba(0, 0, 0, 0.4);
+         }
+ 
+         /* สไตล์สำหรับส่วนหัวที่ใช้เปิด-ปิด Dropdown */
+         .dropdown-toggle {
+             display: flex; /* จัดเรียงข้อความและลูกศรในแนวนอน */
+             justify-content: space-between; /* ผลักลูกศรไปทางขวา */
+             align-items: center; /* จัดให้อยู่กึ่งกลางแนวตั้ง */
+             padding: 15px 20px;
+             cursor: pointer;
+             transition: background-color 0.3s ease;
+             user-select: none; /* ป้องกันไม่ให้เลือกข้อความตอนดับเบิลคลิก */
+         }
+ 
+         /* เอฟเฟกต์เมื่อเอาเมาส์ชี้ที่ Toggle */
+         .dropdown-toggle:hover {
+             background-color: rgba(255, 255, 255, 0.1);
+         }
+ 
+         /* --- Dropdown Arrow --- */
+ 
+         /* สไตล์ลูกศร */
+         .dropdown-arrow {
+             display: inline-block; /* ทำให้สามารถใช้ transform ได้ */
+             transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1); /* อนิเมชันการหมุนที่ลื่นไหล */
+         }
+ 
+         /* หมุนลูกศรเมื่อ Dropdown เปิด */
+         .project-dropdown-container.open .dropdown-arrow {
+             transform: rotate(180deg);
+         }
+ 
+ 
+         /* --- Sub-project List (The Sliding Menu) --- */
+ 
+         /* รายการเมนูย่อย */
+         .sub-project-list {
+             max-height: 0; /* ซ่อนเมนูย่อยไว้ในตอนแรก */
+             overflow: hidden; /* ซ่อนเนื้อหาที่เกินออกมา */
+             transition: max-height 0.5s ease-in-out; /* อนิเมชันการเลื่อนเข้า-ออก */
+         }
+ 
+         /* เมื่อ Dropdown เปิด, กำหนดความสูงเพื่อให้เมนูแสดงผล */
+         .project-dropdown-container.open .sub-project-list {
+             max-height: 500px; /* ตั้งค่าความสูงให้มากพอที่จะแสดงทุกรายการ */
+         }
+ 
+         /* --- Sub-project Items --- */
+ 
+         /* รายการย่อยแต่ละอัน */
+         .sub-item {
+             padding: 12px 20px 12px 35px; /* เพิ่ม padding ด้านซ้ายเพื่อเยื้องเข้ามา */
+             cursor: pointer;
+             opacity: 0; /* ซ่อนไว้ตอนแรก */
+             transform: translateY(-10px); /* เลื่อนขึ้นไปเล็กน้อย */
+             transition: background-color 0.3s ease, 
+                         opacity 0.3s ease, 
+                         transform 0.3s ease;
+             /* transition-delay ถูกกำหนดใน JavaScript แล้ว ซึ่งจะทำให้เกิดเอฟเฟกต์ไล่ระดับสวยงาม */
+         }
+ 
+         /* เมื่อ Dropdown เปิด, ทำให้รายการย่อยแสดงผล */
+         .project-dropdown-container.open .sub-item {
+             opacity: 1; /* ทำให้มองเห็น */
+             transform: translateY(0); /* เลื่อนกลับมาที่ตำแหน่งปกติ */
+         }
+ 
+         /* เอฟเฟกต์เมื่อเอาเมาส์ชี้ที่รายการย่อย */
+         .sub-item:hover {
+             background-color: rgba(255, 255, 255, 0.08);
+         }
+ 
+         /* สไตล์ของรายการย่อยที่ถูกเลือก */
+         .sub-item.active {
+             background-color: rgba(138, 180, 248, 0.2); /* สีฟ้าอ่อนโปร่งแสง */
+             color: #a8c7fa; /* สีข้อความให้สว่างขึ้น */
+             font-weight: 500;
+         }
+
+         /* --- Spotlight Image Fade --- */
+         #spotlight-image {
+             transition: opacity 0.5s ease-in-out;
+             opacity: 1; /* Ensure it's visible by default */
+         }
+ 
+     </style>
+ 
+ </head>
+ <body>
+     
+     <div class="background-container">
+         </div>
+ 
+     <div class="portfolio-container">
+         <div class="spotlight-container">
+             <div class="spotlight-image-wrapper">
+                 <img id="spotlight-image" src="" alt="">
+             </div>
+             <div class="spotlight-info">
+                 <h2 id="spotlight-title"></h2>
+                 <a id="spotlight-link" href="#" target="_blank">ดูผลงาน</a>
+             </div>
+         </div>
+         <div class="project-list-container">
+             <h3 class="list-header">รายการผลงาน</h3>
+             <div id="project-list"></div>
+         </div>
+     </div>
+ 
+     <script>
+         const projects = [
+             { title: "19-5-68 (ออกแบบ Layout หน้าเว็บไซต์)", image: "19-5-68/finish/1layout.png", link: "19-5-68/index.html" },
+             { title: "22-5-68 (semantic element)", image: "22-5-68/finish/layout.png", link: "22-5-68/index2.html" },
+             {title: "26-5-68 (การสร้างตาราง)",
+                 subProjects: [
+                     { title: "จำนวนนักเรียน", image: "26-5-68/finish/web นักเรียน.png", link: "26-5-68/index.html" },
+                     { title: "ตาราง4-12", image: "26-5-68/finish/website.png", link: "26-5-68/index2.html" },
+                 ]
+             },
+             { 
+                 title: "29-5-68 (การสร้างฟอร์ม)",
+                 subProjects: [
+                     { title: "ฟอร์ม Login", image: "29-5-68/finish/login web.png", link: "29-5-68/login.html" },
+                     { title: "ฟอร์มสำหรับการลา", image: "29-5-68/finish/letter web.png", link: "29-5-68/letter.html" },
+                 ]
+             },
+             { 
+                 title: "5-6-68 (responsive layout flex box)",
+                         subProjects: [
+                     { title: "สร้าง responsive layout flex box", image: "5-6-68/finish/Web.png", link: "5-6-68/index.html" },
+                     { title: "แบบฝึกหัด", image: "5-6-68/finish/web tatc.png", link: "5-6-68/index2.html" },
+                 ]
+             },
+             { 
+                 title: "9-6-68 (Grid Layout)",
+                     subProjects: [
+                     { title: "การสร้าง Grid Layout", image: "9-6-68/finish/1 web.png", link: "9-6-68/index.html" },
+                     { title: "แบบฝึกหัด Grid Layout", image: "9-6-68/finish/2web.png", link: "9-6-68/index2.html" },
+                 ]
+             },
+             { title: "16-6-68 (แบบทดสอบที่ 1 ออกแบบเว็บ)", image: "16-6-68/finish/web.png", link: "16-6-68/index.html" },
+             { title: "19-26-6-68 (สร้างวิทยาลัยเคนิคสัตหีบ,Modal)", image: "19-6-68-boostrap/finish/web.png", link: "19-6-68-boostrap/index.html" },
+             { 
+                 title: "30-6-68 (Bootstrap Form)",
+                     subProjects: [
+                     { title: "Login Form", image: "30-6-68/finish/web1.png", link: "30-6-68/login.html" },
+                     { title: "Create Account Form", image: "30-6-68/finish/web.png", link: "30-6-68/register.html" },
+                 ]
+             },
+             
+         ];
+         
+         const portfolioContainer = document.querySelector('.portfolio-container');
+         const projectList = document.getElementById('project-list');
+         const spotlightImage = document.getElementById('spotlight-image');
+         const spotlightTitle = document.getElementById('spotlight-title');
+         const spotlightLink = document.getElementById('spotlight-link');
+         let isAnimating = false;
+ 
+         function animateTitle(newText = null) {
+             const chars = spotlightTitle.querySelectorAll('.char');
+             if (chars.length > 0) {
+                 chars.forEach((char, i) => {
+                     char.style.transitionDelay = `${i * 15}ms`;
+                     char.style.transform = 'translateY(110%)';
+                 });
+             }
+             if (newText) {
+                 setTimeout(() => {
+                     spotlightTitle.innerHTML = '';
+                     newText.split('').forEach(charText => {
+                         const charSpan = document.createElement('span');
+                         charSpan.className = 'char';
+                         charSpan.textContent = charText === ' ' ? '\u00A0' : charText;
+                         spotlightTitle.appendChild(charSpan);
+                     });
+                     setTimeout(() => {
+                         const newChars = spotlightTitle.querySelectorAll('.char');
+                         newChars.forEach((char, i) => {
+                             char.style.transitionDelay = `${i * 25}ms`;
+                             char.style.transform = 'translateY(0)';
+                         });
+                     }, 20);
+                 }, 300);
+             }
+         }
+ 
+         function populateProjectList() {
+             projects.forEach((project, index) => {
+                 if (project.subProjects) {
+                     const dropdownContainer = document.createElement('div');
+                     dropdownContainer.className = 'project-dropdown-container';
+                     const toggleItem = document.createElement('div');
+                     toggleItem.className = 'project-list-item dropdown-toggle';
+                     toggleItem.innerHTML = `${project.title} <span class="dropdown-arrow">▼</span>`;
+                     toggleItem.addEventListener('click', () => {
+                         dropdownContainer.classList.toggle('open');
+                     });
+                     const subList = document.createElement('div');
+                     subList.className = 'sub-project-list';
+                     project.subProjects.forEach((subProject, subIndex) => {
+                         const subItem = document.createElement('div');
+                         subItem.className = 'project-list-item sub-item';
+                         subItem.textContent = subProject.title;
+                         subItem.style.transitionDelay = `${subIndex * 60}ms`;
+                         subItem.addEventListener('click', (e) => {
+                             e.stopPropagation();
+                             if (!subItem.classList.contains('active')) {
+                                 updateSpotlight(subProject, subItem, dropdownContainer);
+                             }
+                         });
+                         subList.appendChild(subItem);
+                     });
+                     dropdownContainer.appendChild(toggleItem);
+                     dropdownContainer.appendChild(subList);
+                     projectList.appendChild(dropdownContainer);
+                 } else {
+                     const item = document.createElement('div');
+                     item.className = 'project-list-item';
+                     item.textContent = project.title;
+                     item.dataset.index = index;
+                     item.addEventListener('click', () => {
+                         if (!item.classList.contains('active')) {
+                             updateSpotlight(project, item);
+                         }
+                     });
+                     projectList.appendChild(item);
+                 }
+             });
+         }
+         
+         function updateSpotlight(project, clickedItem, parentContainer = null) {
+             if (isAnimating) return;
+             isAnimating = true;
+             animateTitle();
+             spotlightImage.style.opacity = 0;
+             setTimeout(() => {
+                 spotlightImage.src = project.image;
+                 spotlightLink.href = project.link;
+                 animateTitle(project.title);
+                 spotlightImage.style.opacity = 1;
+                 document.querySelectorAll('.project-list-item.active, .project-dropdown-container.active').forEach(item => {
+                     item.classList.remove('active');
+                 });
+                 clickedItem.classList.add('active');
+                 if (parentContainer) {
+                     parentContainer.classList.add('active');
+                 }
+             }, 500);
+             setTimeout(() => {
+                 isAnimating = false;
+             }, 1000);
+         }
+ 
+         spotlightLink.addEventListener('click', function(event) {
+             event.preventDefault();
+             const destinationUrl = this.href;
+             portfolioContainer.classList.add('page-exit');
+             setTimeout(() => { window.location.href = destinationUrl; }, 500);
+         });
+ 
+function init() {
+    populateProjectList();
+
+    // กำหนดชื่อโปรเจ็กต์ที่ต้องการให้ active เป็นค่าเริ่มต้น
+    const defaultProjectTitle = "19-5-68 (ออกแบบ Layout หน้าเว็บไซต์)"; // <--- จุดสำคัญอยู่ตรงนี้ครับ!
+
+    // ค้นหาโปรเจ็กต์และ index จากใน array
+    let projectToActivate = null;
+    let projectIndex = -1;
+
+    projectIndex = projects.findIndex(p => p.title === defaultProjectTitle && !p.subProjects);
+    if (projectIndex !== -1) {
+        projectToActivate = projects[projectIndex];
+    }
     
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
-    <link rel="icon" href="img/me.jpg" type="image/x-icon">
+    // ถ้าหาเจอ ให้ตั้งค่าโปรเจ็กต์นั้นเป็น active
+    if (projectToActivate) {
+        const elementToActivate = projectList.querySelector(`.project-list-item[data-index='${projectIndex}']`);
+        
+        if (elementToActivate) {
+            // ตั้งค่า Spotlight
+            spotlightImage.src = projectToActivate.image;
+            spotlightLink.href = projectToActivate.link;
+            animateTitle(projectToActivate.title);
+            
+            // เพิ่มคลาส active ให้กับรายการในลิสต์
+            elementToActivate.classList.add('active');
+        }
+    } else {
+        // กรณีหาไม่เจอ ให้แสดงโปรเจ็กต์แรกสุดเหมือนเดิม (เป็น Fallback)
+        if (projects.length > 0) {
+            let firstProjectToShow = projects[0];
+            // ... (โค้ดส่วนนี้เหมือนกับของเดิม) ...
+        }
+    }
     
-    <style>
-
-    </style>
-
-</head>
-<body>
-    
-    <div class="background-container">
-        </div>
-
-    <div class="portfolio-container">
-        <div class="spotlight-container">
-            <div class="spotlight-image-wrapper">
-                <img id="spotlight-image" src="" alt="">
-            </div>
-            <div class="spotlight-info">
-                <h2 id="spotlight-title"></h2>
-                <a id="spotlight-link" href="#" target="_blank">ดูผลงาน</a>
-            </div>
-        </div>
-        <div class="project-list-container">
-            <h3 class="list-header">รายการผลงาน</h3>
-            <div id="project-list"></div>
-        </div>
-    </div>
-
-    <script>
-        const projects = [
-            { title: "19-5-68 (ออกแบบ Layout หน้าเว็บไซต์)", image: "19-5-68/finish/1layout.png", link: "19-5-68/index.html" },
-            { title: "22-5-68 (semantic element)", image: "22-5-68/finish/layout.png", link: "22-5-68/index2.html" },
-            {title: "26-5-68 (การสร้างตาราง)",
-                subProjects: [
-                    { title: "จำนวนนักเรียน", image: "26-5-68/finish/web นักเรียน.png", link: "26-5-68/index.html" },
-                    { title: "ตาราง4-12", image: "26-5-68/finish/website.png", link: "26-5-68/index2.html" },
-                ]
-            },
-            { 
-                title: "29-5-68 (การสร้างฟอร์ม)",
-                subProjects: [
-                    { title: "ฟอร์ม Login", image: "29-5-68/finish/login web.png", link: "29-5-68/login.html" },
-                    { title: "ฟอร์มสำหรับการลา", image: "29-5-68/finish/letter web.png", link: "29-5-68/letter.html" },
-                ]
-            },
-            { 
-                title: "5-6-68 (responsive layout flex box)",
-                            subProjects: [
-                    { title: "สร้าง responsive layout flex box", image: "5-6-68/finish/Web.png", link: "5-6-68/index.html" },
-                    { title: "แบบฝึกหัด", image: "5-6-68/finish/web tatc.png", link: "5-6-68/index2.html" },
-                ]
-            },
-            { 
-                title: "9-6-68 (Grid Layout)",
-                    subProjects: [
-                    { title: "การสร้าง Grid Layout", image: "9-6-68/finish/1 web.png", link: "9-6-68/index.html" },
-                    { title: "แบบฝึกหัด Grid Layout", image: "9-6-68/finish/2web.png", link: "9-6-68/index2.html" },
-                ]
-            },
-            { title: "16-6-68 (แบบทดสอบที่ 1 ออกแบบเว็บ)", image: "16-6-68/finish/web.png", link: "16-6-68/index.html" },
-            { title: "19-26-6-68 (สร้างวิทยาลัยเคนิคสัตหีบ,Modal)", image: "19-6-68-boostrap/finish/web.png", link: "19-6-68-boostrap/index.html" }
-           
-        ];
-        
-        const portfolioContainer = document.querySelector('.portfolio-container');
-        const projectList = document.getElementById('project-list');
-        const spotlightImage = document.getElementById('spotlight-image');
-        const spotlightTitle = document.getElementById('spotlight-title');
-        const spotlightLink = document.getElementById('spotlight-link');
-        let isAnimating = false;
-
-        function animateTitle(newText = null) {
-            const chars = spotlightTitle.querySelectorAll('.char');
-            if (chars.length > 0) {
-                chars.forEach((char, i) => {
-                    char.style.transitionDelay = `${i * 15}ms`;
-                    char.style.transform = 'translateY(110%)';
-                });
-            }
-            if (newText) {
-                setTimeout(() => {
-                    spotlightTitle.innerHTML = '';
-                    newText.split('').forEach(charText => {
-                        const charSpan = document.createElement('span');
-                        charSpan.className = 'char';
-                        charSpan.textContent = charText === ' ' ? '\u00A0' : charText;
-                        spotlightTitle.appendChild(charSpan);
-                    });
-                    setTimeout(() => {
-                        const newChars = spotlightTitle.querySelectorAll('.char');
-                        newChars.forEach((char, i) => {
-                            char.style.transitionDelay = `${i * 25}ms`;
-                            char.style.transform = 'translateY(0)';
-                        });
-                    }, 20);
-                }, 300);
-            }
-        }
-
-        function populateProjectList() {
-            projects.forEach((project, index) => {
-                if (project.subProjects) {
-                    const dropdownContainer = document.createElement('div');
-                    dropdownContainer.className = 'project-dropdown-container';
-                    const toggleItem = document.createElement('div');
-                    toggleItem.className = 'project-list-item dropdown-toggle';
-                    toggleItem.innerHTML = `${project.title} <span class="dropdown-arrow">▼</span>`;
-                    toggleItem.addEventListener('click', () => {
-                        dropdownContainer.classList.toggle('open');
-                    });
-                    const subList = document.createElement('div');
-                    subList.className = 'sub-project-list';
-                    project.subProjects.forEach((subProject, subIndex) => {
-                        const subItem = document.createElement('div');
-                        subItem.className = 'project-list-item sub-item';
-                        subItem.textContent = subProject.title;
-                        subItem.style.transitionDelay = `${subIndex * 60}ms`;
-                        subItem.addEventListener('click', (e) => {
-                            e.stopPropagation();
-                            if (!subItem.classList.contains('active')) {
-                                updateSpotlight(subProject, subItem, dropdownContainer);
-                            }
-                        });
-                        subList.appendChild(subItem);
-                    });
-                    dropdownContainer.appendChild(toggleItem);
-                    dropdownContainer.appendChild(subList);
-                    projectList.appendChild(dropdownContainer);
-                } else {
-                    const item = document.createElement('div');
-                    item.className = 'project-list-item';
-                    item.textContent = project.title;
-                    item.dataset.index = index;
-                    item.addEventListener('click', () => {
-                        if (!item.classList.contains('active')) {
-                            updateSpotlight(project, item);
-                        }
-                    });
-                    projectList.appendChild(item);
-                }
-            });
-        }
-        
-        function updateSpotlight(project, clickedItem, parentContainer = null) {
-            if (isAnimating) return;
-            isAnimating = true;
-            animateTitle();
-            spotlightImage.style.animationName = 'fade-out';
-            spotlightImage.classList.add('fading');
-            setTimeout(() => {
-                spotlightImage.src = project.image;
-                spotlightLink.href = project.link;
-                animateTitle(project.title);
-                spotlightImage.style.animationName = 'fade-in';
-                document.querySelectorAll('.project-list-item.active, .project-dropdown-container.active').forEach(item => {
-                    item.classList.remove('active');
-                });
-                clickedItem.classList.add('active');
-                if (parentContainer) {
-                    parentContainer.classList.add('active');
-                }
-            }, 500);
-            setTimeout(() => {
-                spotlightImage.classList.remove('fading');
-                isAnimating = false;
-            }, 1000);
-        }
-
-        spotlightLink.addEventListener('click', function(event) {
-            event.preventDefault();
-            const destinationUrl = this.href;
-            portfolioContainer.classList.add('page-exit');
-            setTimeout(() => { window.location.href = destinationUrl; }, 500);
-        });
-
-        function init() {
-            populateProjectList();
-            if (projects.length > 0) {
-                let firstProjectToShow = projects[0];
-                let firstItemElement;
-                if (firstProjectToShow.subProjects) {
-                     firstProjectToShow = firstProjectToShow.subProjects[0];
-                     const firstDropdown = projectList.querySelector('.project-dropdown-container');
-                     firstDropdown.classList.add('open', 'active');
-                     firstItemElement = firstDropdown.querySelector('.sub-item');
-                     firstItemElement.classList.add('active');
-                } else {
-                    firstItemElement = projectList.querySelector(`.project-list-item[data-index='0']`);
-                    firstItemElement.classList.add('active');
-                }
-                spotlightImage.src = firstProjectToShow.image;
-                spotlightLink.href = firstProjectToShow.link;
-                animateTitle(firstProjectToShow.title);
-            }
-        }
-        
-        init();
-    </script>
-</body>
-</html>
+    // ทำให้รูปภาพแรกแสดงผลทันที
+    spotlightImage.style.opacity = '1';
+}
+         
+         
+         init();
+     </script>
+ </body>
+ </html>
