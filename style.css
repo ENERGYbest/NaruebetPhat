@@ -186,3 +186,123 @@
     }
     
 }
+        /* --- (อัปเดต) CSS สำหรับ Dropdown UI ใหม่ --- */
+
+        /* สไตล์พื้นฐานของทุกไอเทมในลิสต์ */
+        .project-list-item {
+            padding: 12px 15px;
+            border-radius: 6px;
+            margin-bottom: 5px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            cursor: pointer;
+        }
+
+        .project-list-item:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        /* คอนเทนเนอร์ของ Dropdown */
+        .project-dropdown-container {
+            position: relative; /* สำคัญมากสำหรับเส้นเชื่อม */
+            border-radius: 6px;
+            transition: background-color 0.3s ease;
+        }
+
+        /* สไตล์เมื่อ Dropdown ถูกเปิด หรือมีรายการย่อยถูกเลือก */
+        .project-dropdown-container.open,
+        .project-dropdown-container.active {
+            background-color: rgba(255, 255, 255, 0.05);
+        }
+
+
+        /* --- เส้นเชื่อมแนวตั้ง (Visual Connector) --- */
+        .project-dropdown-container::before {
+            content: '';
+            position: absolute;
+            left: 21px; /* จัดตำแหน่งให้อยู่กึ่งกลางของ padding */
+            top: 45px; /* เริ่มหลังไอเทมหลัก */
+            bottom: 10px;
+            width: 2px;
+            background-color: rgba(255, 255, 255, 0.15);
+            border-radius: 2px;
+            transform: scaleY(0); /* ซ่อนไว้ในตอนแรก */
+            transform-origin: top;
+            transition: transform 0.4s ease;
+        }
+
+        /* เมื่อ Dropdown เปิด ให้เส้นเชื่อมขยายออก */
+        .project-dropdown-container.open::before {
+            transform: scaleY(1);
+        }
+
+
+        /* ลิสต์ของรายการย่อย */
+        .sub-project-list {
+            padding-left: 20px; /* ขยับรายการย่อยเข้ามา */
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-out;
+        }
+
+        .project-dropdown-container.open .sub-project-list {
+            max-height: 500px;
+        }
+
+        /* --- อนิเมชันของรายการย่อย (Stagger Animation) --- */
+        .sub-item {
+            position: relative;
+            padding-left: 25px;
+            opacity: 0; /* ซ่อนไว้ตอนแรก */
+            transform: translateX(-15px); /* ขยับไปทางซ้ายเล็กน้อย */
+            transition: opacity 0.4s ease, transform 0.4s ease;
+        }
+
+        /* เมื่อ Dropdown เปิด ให้รายการย่อยแสดงผล */
+        .project-dropdown-container.open .sub-item {
+            opacity: 0.7;
+            transform: translateX(0);
+        }
+
+        .project-dropdown-container.open .sub-item:hover {
+            opacity: 1;
+        }
+
+        /* --- สไตล์เมื่อ Active หรือถูกเลือก --- */
+
+        /* สำหรับไอเทมปกติที่ถูกเลือก */
+        .project-list-item.active:not(.dropdown-toggle) {
+            background-color: rgba(90, 150, 255, 0.2);
+            font-weight: 500;
+            color: #fff;
+        }
+
+        /* สำหรับรายการย่อยที่ถูกเลือก */
+        .sub-item.active {
+            opacity: 1;
+            font-weight: 500;
+            color: #fff;
+        }
+
+        /* เพิ่มแถบ Indicator ด้านซ้ายของรายการย่อยที่ถูกเลือก */
+        .sub-item.active::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            height: 70%;
+            width: 4px;
+            background-color: #87CEEB; /* สีฟ้า Sky Blue */
+            border-radius: 4px;
+        }
+
+
+        /* ลูกศรชี้ลงของ Dropdown */
+        .dropdown-toggle .dropdown-arrow {
+            transition: transform 0.3s ease;
+        }
+
+        .project-dropdown-container.open .dropdown-toggle .dropdown-arrow {
+            transform: rotate(180deg);
+        }
+        /* --- จบส่วน CSS อัปเดต --- */
